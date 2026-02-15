@@ -1,0 +1,3 @@
+before_install:
+  - find . -type f -iname "pom.xml" | xargs sed -i "s/<groupId>com.github.the-btfash-foundation<\/groupId>/<groupId>com.github.the-btfash-foundation.randoop-maven-plugin<\/groupId>/g"
+  - mvn versions:set -DnewVersion="$VERSION" -DgenerateBackupPoms=false
