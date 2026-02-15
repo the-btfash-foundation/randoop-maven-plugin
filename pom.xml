@@ -49,6 +49,29 @@
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>3.1.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <artifactId>randoop-all</artifactId>
+                            <groupId>randoop</groupId>
+                            <version>${revision}</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                            <file>
+                                ${project.build.directory}/randoop-lib/randoop-all-${revision}.jar
+                            </file>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.10.0</version> <!-- Use a recent version -->
@@ -107,27 +130,6 @@
                             <outputDirectory>${project.build.outputDirectory}</outputDirectory>
                         </configuration>
                     </execution> -->
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-install-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <phase>initialize</phase>
-                        <configuration>
-                            <artifactId>randoop-all</artifactId>
-                            <groupId>randoop</groupId>
-                            <version>${revision}</version>
-                            <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
-                            <file>
-                                ${project.build.directory}/randoop-lib/randoop-all-${revision}.jar
-                            </file>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
             <plugin>
