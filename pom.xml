@@ -57,7 +57,7 @@
                         <id>unpack-randoop-all</id>
                         <phase>validate</phase> <!-- Or another appropriate phase -->
                         <goals>
-                            <goal>unpack</goal>
+                            <goal>copy</goal>
                         </goals>
                         <configuration>
                             <!-- The artifact to unpack -->
