@@ -1,6 +1,7 @@
 package randoop.maven;
 
 import java.io.File;
+import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -88,7 +89,7 @@ public class RandoopMojo extends AbstractMojo {
     final URLClassLoader classLoader = new URLClassLoader(convert(urls));
     List<Class<?>> allClassesOfPackage = ClassFinder.find(packageName, classLoader);
     for (Class<?> currentClass : allClassesOfPackage) {
-        if(currentClass.getName().contains("package-info")) continue;
+        if(currentClass.getName().contains("package-info") || !Modifier.isPublic(currentClass.getModifiers())) continue;
       getLog().info("Add class " + currentClass.getName());
       args.add("--testclass=" + currentClass.getName());
     }
