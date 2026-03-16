@@ -88,6 +88,7 @@ public class RandoopMojo extends AbstractMojo {
     final URLClassLoader classLoader = new URLClassLoader(convert(urls));
     List<Class<?>> allClassesOfPackage = ClassFinder.find(packageName, classLoader);
     for (Class<?> currentClass : allClassesOfPackage) {
+        if(currentClass.getName().contains("package-info")) continue;
       getLog().info("Add class " + currentClass.getName());
       args.add("--testclass=" + currentClass.getName());
     }
